@@ -14,14 +14,33 @@ function JoblyRouter() {
     return (
         <Router>
             <Switch>
-                <Route exact path="/companies/:id" component={<CompanyDetails />} />
-                <Route exact path="/companies" component={<Companies />} />
-                <Route exact path="/jobs/:id" component={<Job />} />
-                <Route exact path="/jobs" component={<JobBoard />} />
-                <Route exact path="/profile" component={<Profile />} />
-                <Route exact path="/register" component={<Register />} />
-                <Route exact path="/login" component={<Login />} />
-                <Route exact path="/" component={<Home />} />
+                <Route exact path="/companies/:id">
+                    <CompanyDetails />
+                </Route>
+                <Route exact path="/companies">
+                    <Companies />
+                </Route>
+
+                <Route exact path="/jobs/:id">
+                    <Job />
+                </Route>
+                <Route exact path="/jobs">
+                    <JobBoard />
+                </Route>
+
+                <Route exact path="/profile">
+                    <Profile />
+                </Route> 
+                <Route exact path="/register">
+                    <Register />
+                </Route> 
+                <Route exact path="/login">
+                    <Login />
+                </Route> 
+                
+                <Route exact path="/">
+                    <Home />
+                </Route>
             </Switch>
         </Router>
     )
