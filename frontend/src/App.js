@@ -1,9 +1,10 @@
 import './App.css';
+import Home from '@mui/icons-material/Home';
 
 function App() {
   return (
     <div className="App">
-      <h1>Homepage</h1>
+      <Home color="danger" />
     </div>
   );
 }
