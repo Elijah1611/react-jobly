@@ -1,10 +1,10 @@
 import './App.css';
-import Home from '@mui/icons-material/Home';
+import JoblyRouter from './routes';
 
 function App() {
   return (
     <div className="App">
-      <Home color="danger" />
+      <JoblyRouter />
     </div>
   );
 }
