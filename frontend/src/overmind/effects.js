@@ -21,6 +21,15 @@ const getCurrentUser = async (username, token) => {
   return result.data.user
 }
 
+const patchCurrentUser = async (username, token, updateData) => {
+  const result = await axios.patch(`/users/${username}`, updateData, {
+    headers: {
+      Authorization: token
+    }
+  })
+  return result.data.user
+}
+
 const getUsers = async (token) => {
   const result = await axios.get('/users', {
     headers: {
@@ -50,6 +59,7 @@ export const api = {
   login,
   register,
   getCurrentUser,
+  patchCurrentUser,
   getUsers,
   getCompanies,
   getCompanyByHandle,

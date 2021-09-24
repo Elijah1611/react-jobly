@@ -17,6 +17,15 @@ export const getUser = async ({ state, effects }) => {
     state.user = { ...state.user, ...currentUser }
 }
 
+export const updateUser = async ({state, effects}, updateData) => {
+    try {
+        const updatedCurrentUser = await effects.api.patchCurrentUser(state.user.username, state.user.token, updateData)
+        state.user = { ...state.user, ...updatedCurrentUser }
+    } catch (error) {
+        state.error = error
+    }
+}
+
 export const logout = ({ state }) => {
     state.user.isAuthenticated = false
     state.user.token = ''
