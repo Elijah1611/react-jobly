@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 import Home from './../pages/Home'
 import Profile from '../pages/Profile'
@@ -20,24 +20,21 @@ function JoblyRouter() {
                 <Route exact path="/companies">
                     <Companies />
                 </Route>
-
                 <Route exact path="/jobs/:id">
                     <Job />
                 </Route>
                 <Route exact path="/jobs">
                     <JobBoard />
                 </Route>
-
                 <Route exact path="/profile">
                     <Profile />
-                </Route> 
+                </Route>
                 <Route exact path="/register">
                     <Register />
-                </Route> 
+                </Route>
                 <Route exact path="/login">
                     <Login />
-                </Route> 
-                
+                </Route>
                 <Route exact path="/">
                     <Home />
                 </Route>

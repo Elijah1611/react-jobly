@@ -1,7 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 import { Grid, Typography, TextField, Card, Button } from '@mui/material'
+import { useAppState, useActions } from './../overmind'
+
+import JoblyAPI from './../api'
 
 const Login = () => {
+    let history = useHistory();
+    const state = useAppState()
+    const actions = useActions()
+
+    const isLoggedIn = !!(window.localStorage.getItem('token'))
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const form = e.target;
+        const formData = new FormData(form);
+        const formProps = Object.fromEntries(formData);
+
+        actions.login(formProps)
+    }
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            actions.getUser()
+            history.push('/profile')
+        }
+    }, [state.user.token])
+
     return (
         <Grid
             container
@@ -36,7 +63,7 @@ const Login = () => {
                             </Typography>
                         </Grid>
 
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <Grid container spacing={2}>
 
                                 <Grid container item spacing={2} style={{ margin: '0 auto' }}>
@@ -46,6 +73,7 @@ const Login = () => {
                                             id="username"
                                             name="username"
                                             label="Username"
+                                            value="testuser"
                                             type="text"
                                             required
                                             fullWidth
@@ -61,6 +89,7 @@ const Login = () => {
                                             name="password"
                                             label="Password"
                                             type="password"
+                                            value="password"
                                             required
                                             fullWidth
                                         />
@@ -68,7 +97,7 @@ const Login = () => {
                                 </Grid>
 
                                 <Grid container item justifyContent="center">
-                                    <Button href="/login" variant="link">
+                                    <Button href="/register" variant="link">
                                         I Don't Have An Account? Sign Up!
                                     </Button>
 
@@ -82,6 +111,7 @@ const Login = () => {
                                         >
                                             Sign in
                                         </Button>
+                                        <p>{state.error?.message}</p>
                                     </Grid>
                                 </Grid>
                             </Grid>

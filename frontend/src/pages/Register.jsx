@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, Typography, TextField, Card, Button } from '@mui/material'
 
+import JoblyAPI from './../api'
+
 const Register = () => {
+    // const [token, setToken] = useState('token', '')
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const form = e.target;
+        const formData = new FormData(form);
+        const formProps = Object.fromEntries(formData);
+
+        const result = await JoblyAPI.companies.getAll();
+        const companies = result.data
+
+        console.log(companies)
+    }
+
     return (
         <Grid
             container
@@ -36,7 +53,7 @@ const Register = () => {
                             </Typography>
                         </Grid>
 
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <Grid container spacing={2}>
                                 <Grid container item spacing={2} style={{ margin: '0 auto' }}>
                                     <Grid item xs={6}>
@@ -91,8 +108,8 @@ const Register = () => {
                                     </Grid>
                                 </Grid>
 
-                                <Grid container item spacing={2} style={{ margin: '0 auto' }}>
-                                    <Grid item xs={6}>
+                                <Grid container item spacing={2} style={{ margin: '0 auto', marginBottom: '.5rem' }}>
+                                    <Grid item xs={12}>
                                         <TextField
                                             variant="outlined"
                                             id="password"
@@ -103,21 +120,13 @@ const Register = () => {
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField
-                                            variant="outlined"
-                                            id="passwordConfirm"
-                                            name="passwordConfirm"
-                                            label="Confirm Password"
-                                            type="password"
-                                            required
-                                            fullWidth
-                                        />
-                                    </Grid>
                                 </Grid>
 
                                 <Grid container item justifyContent="center">
-                                    Already Have An Account? Log In!
+                                    <Button href="/login" variant="link">
+                                        Already Have An Account? Log In!
+                                    </Button>
+
                                     <Grid item xs={10} style={{ margin: "1rem 0" }}>
                                         <Button
                                             fullWidth

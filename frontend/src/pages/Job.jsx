@@ -1,10 +1,13 @@
 import React from 'react'
+import Protected from '../routes/Protected'
 
 function Job() {
     return (
-        <div>
-            Job Page
-        </div>
+        <Protected>
+            <div>
+                Job Page
+            </div>
+        </Protected>
     )
 }
 

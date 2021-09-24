@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Grid, Typography } from '@mui/material'
+import { useAppState, useActions } from './../overmind'
 
 function Home() {
+    const state = useAppState()
+    const actions = useActions()
+    const isLoggedIn = !!window.localStorage.getItem('token')
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            actions.getUser()
+        }
+    }, [isLoggedIn])
+
     return (
         <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2} style={{ marginTop: '15rem' }}>
             <Grid item xs={12}>
@@ -16,7 +27,7 @@ function Home() {
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="h3" component="h3" textAlign="center">
-                    Welcome Back, Jack!
+                    {isLoggedIn ? `Welcome Back, ${state.user.username}!` : null}
                 </Typography>
             </Grid>
         </Grid>
