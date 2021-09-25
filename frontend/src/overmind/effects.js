@@ -54,6 +54,19 @@ const getJobs = async () => {
   return result.data.jobs
 }
 
+const applyToJob = async (application) => {
+  console.log('e', application)
+  const { username, jobId, token } = application
+
+  const result = await axios.post(`/users/${username}/jobs/${jobId}`, null, {
+    headers: {
+      Authorization: token
+    }
+  })
+
+  return result.data
+}
+
 
 export const api = {
   login,
@@ -64,4 +77,5 @@ export const api = {
   getCompanies,
   getCompanyByHandle,
   getJobs,
+  applyToJob
 }

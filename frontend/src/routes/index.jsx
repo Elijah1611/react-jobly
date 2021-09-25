@@ -14,7 +14,7 @@ function JoblyRouter() {
     return (
         <Router>
             <Switch>
-                <Route exact path="/companies/:id">
+                <Route exact path="/companies/:handle">
                     <CompanyDetails />
                 </Route>
                 <Route exact path="/companies">

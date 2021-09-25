@@ -48,6 +48,18 @@ export const getCompanies = async ({ state, effects }) => {
     state.companies = await effects.api.getCompanies()
 }
 
+export const getCompanyByHandle = async ({ state, effects }, handle) => {
+    state.company = await effects.api.getCompanyByHandle(handle)
+}
+
+export const getJobs = async ({ state, effects }) => {
+    state.jobs = await effects.api.getJobs()
+}
+
+export const applyToJob = async ({ state, effects }, application) => {
+   await effects.api.applyToJob({ ...application, token: state.user.token })
+}
+
 export const setGlobalError = ({ state }, error) => {
     state.error = error
 }

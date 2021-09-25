@@ -12,6 +12,8 @@ const user = {
 
 export const state = {
     companies: [],
+    company: null,
+    jobs: [],
     user,
     isLoading: false,
     error: null
