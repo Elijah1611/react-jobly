@@ -3,6 +3,7 @@ import CompanyCard from '../components/CompanyCard'
 import Protected from '../routes/Protected'
 import { useAppState, useActions } from './../overmind'
 import { Container } from '@mui/material';
+import SearchBar from '../components/SearchBar';
 
 function Companies() {
     const state = useAppState()
@@ -16,8 +17,11 @@ function Companies() {
     return (
         <Protected>
             <Container>
+                <SearchBar type="company" />
                 {
-                    state.companies.map(c => <CompanyCard key={c.handle} {...c} />)
+                    state.filteredCompanies.length > 0
+                        ? (state.filteredCompanies.map(c => <CompanyCard key={c.id} {...c} />))
+                        : (state.companies.map(c => <CompanyCard key={c.id} {...c} />))
                 }
             </Container>
         </Protected>

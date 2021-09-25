@@ -60,6 +60,22 @@ export const applyToJob = async ({ state, effects }, application) => {
    await effects.api.applyToJob({ ...application, token: state.user.token })
 }
 
+export const searchJobs = async ({ state, effects }, title) => {
+    state.filteredJobs = await effects.api.searchJobs(title)
+}
+
+export const clearSearchedJobs = ({ state }) => {
+    state.filteredJobs = []
+}
+
+export const searchCompanies = async ({ state, effects }, name) => {
+    state.filteredCompanies = await effects.api.searchCompanies(name)
+}
+
+export const clearSearchedCompanies = ({ state }) => {
+    state.filteredCompanies = []
+}
+
 export const setGlobalError = ({ state }, error) => {
     state.error = error
 }

@@ -12,8 +12,10 @@ const user = {
 
 export const state = {
     companies: [],
+    filteredCompanies: [],
     company: null,
     jobs: [],
+    filteredJobs: [],
     user,
     isLoading: false,
     error: null

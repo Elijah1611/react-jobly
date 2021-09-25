@@ -36,7 +36,7 @@ const JobCard = ({ id, title, salary, equity }) => {
                     Salary: {salary ? '$' + numberWithCommas(salary) : 'Not Available'}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Equity: {equity}%
+                    Equity: {equity ? `${equity}%` : 'Not Available'}
                 </Typography>
             </CardContent>
             <CardActions>
