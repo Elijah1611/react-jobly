@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
-import { Grid, Typography, TextField, Card, Button } from '@mui/material'
 import { useAppState, useActions } from './../overmind'
-
-import JoblyAPI from './../api'
+import { Grid, Typography, TextField, Card, Button } from '@mui/material'
 
 const Login = () => {
     let history = useHistory();
@@ -11,6 +9,13 @@ const Login = () => {
     const actions = useActions()
 
     const isLoggedIn = !!(window.localStorage.getItem('token'))
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            actions.getUser()
+            history.push('/profile')
+        }
+    }, [state.user.token])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -21,13 +26,6 @@ const Login = () => {
 
         actions.login(formProps)
     }
-
-    useEffect(() => {
-        if (isLoggedIn) {
-            actions.getUser()
-            history.push('/profile')
-        }
-    }, [state.user.token])
 
     return (
         <Grid
@@ -98,7 +96,7 @@ const Login = () => {
 
                                 <Grid container item justifyContent="center">
                                     <Button href="/register" variant="link">
-                                        I Don't Have An Account? Sign Up!
+                                        Don't Have An Account? Sign Up!
                                     </Button>
 
 

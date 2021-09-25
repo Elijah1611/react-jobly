@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
+import { useAppState, useActions } from './../overmind'
 import { Grid, Typography, TextField, Card, Button } from '@mui/material'
 
-import JoblyAPI from './../api'
-
 const Register = () => {
-    // const [token, setToken] = useState('token', '')
+    let history = useHistory();
+    const state = useAppState()
+    const actions = useActions()
+
+    const isLoggedIn = !!(window.localStorage.getItem('token'))
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            actions.getUser()
+            history.push('/profile')
+        }
+    }, [state.user.token])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -13,10 +24,9 @@ const Register = () => {
         const formData = new FormData(form);
         const formProps = Object.fromEntries(formData);
 
-        const result = await JoblyAPI.companies.getAll();
-        const companies = result.data
+        console.log(formProps)
 
-        console.log(companies)
+        actions.register(formProps)
     }
 
     return (
@@ -63,6 +73,7 @@ const Register = () => {
                                             name="firstName"
                                             label="First Name"
                                             type="text"
+                                            value="Jack"
                                             required
                                             fullWidth
                                         />
@@ -74,6 +85,7 @@ const Register = () => {
                                             name="lastName"
                                             label="Last Name"
                                             type="text"
+                                            value="Scott"
                                             required
                                             fullWidth
                                         />
@@ -88,6 +100,7 @@ const Register = () => {
                                             name="username"
                                             label="Username"
                                             type="text"
+                                            value="Jack77"
                                             required
                                             fullWidth
                                         />
@@ -102,6 +115,7 @@ const Register = () => {
                                             name="email"
                                             label="Email"
                                             type="text"
+                                            value="jack77@gmail.com"
                                             required
                                             fullWidth
                                         />
@@ -116,6 +130,7 @@ const Register = () => {
                                             name="password"
                                             label="Password"
                                             type="password"
+                                            value="pass123"
                                             required
                                             fullWidth
                                         />
@@ -134,7 +149,7 @@ const Register = () => {
                                             variant="contained"
                                             type="submit"
                                         >
-                                            Sign in
+                                            Sign Up
                                         </Button>
                                     </Grid>
                                 </Grid>

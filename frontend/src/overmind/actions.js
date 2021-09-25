@@ -8,6 +8,16 @@ export const login = async ({ state, effects }, info) => {
     }
 }
 
+export const register = async ({ state, effects }, info) => {
+    try {
+        state.user.token = await effects.api.register(info)
+        window.localStorage.setItem('token', state.user.token)
+        window.localStorage.setItem('username', info.username)
+    } catch (error) {
+        state.error = error
+    }
+}
+
 export const getUser = async ({ state, effects }) => {
     state.user.token = window.localStorage.getItem('token')
     state.user.username = window.localStorage.getItem('username')
