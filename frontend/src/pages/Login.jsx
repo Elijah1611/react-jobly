@@ -71,7 +71,6 @@ const Login = () => {
                                             id="username"
                                             name="username"
                                             label="Username"
-                                            value="testuser"
                                             type="text"
                                             required
                                             fullWidth
@@ -87,7 +86,6 @@ const Login = () => {
                                             name="password"
                                             label="Password"
                                             type="password"
-                                            value="password"
                                             required
                                             fullWidth
                                         />

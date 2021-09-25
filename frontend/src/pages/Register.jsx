@@ -73,7 +73,6 @@ const Register = () => {
                                             name="firstName"
                                             label="First Name"
                                             type="text"
-                                            value="Jack"
                                             required
                                             fullWidth
                                         />
@@ -85,7 +84,6 @@ const Register = () => {
                                             name="lastName"
                                             label="Last Name"
                                             type="text"
-                                            value="Scott"
                                             required
                                             fullWidth
                                         />
@@ -100,7 +98,6 @@ const Register = () => {
                                             name="username"
                                             label="Username"
                                             type="text"
-                                            value="Jack77"
                                             required
                                             fullWidth
                                         />
@@ -115,7 +112,6 @@ const Register = () => {
                                             name="email"
                                             label="Email"
                                             type="text"
-                                            value="jack77@gmail.com"
                                             required
                                             fullWidth
                                         />
@@ -130,7 +126,6 @@ const Register = () => {
                                             name="password"
                                             label="Password"
                                             type="password"
-                                            value="pass123"
                                             required
                                             fullWidth
                                         />
